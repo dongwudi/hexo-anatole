@@ -1,0 +1,26 @@
+extends partial/layout
+
+block site_title
+    != page.title + " · " + config.title
+
+block description
+
+block content
+  if page.type === 'tags'
+    .autopagerize_page_element: .content
+      div.tag
+        .tag-cloud__title= page.title  
+        span.tag-cloud__amount= site.tags.length
+        .tag-cloud-tags!= tagcloud({min_font: 12, max_font: 30, amount: 200, color: true, start_color: '#A4D8FA', end_color: '#0790E8'})
+  else if page.type === 'categories'
+    .autopagerize_page_element: .content
+      .cat
+        .category__title= page.title
+        span.category__amount= site.categories.length
+        div!= list_categories()
+  else
+    .autopagerize_page_element: .content: .post-page
+      include mixins
+      +make_post(page, true)
+      if page.comments
+          include partial/comments

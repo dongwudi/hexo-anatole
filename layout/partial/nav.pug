@@ -1,0 +1,28 @@
+.page-top.animated.fadeInDown
+  .nav
+    li
+      if is_home()
+        a.current(href="/")= __('首页')					
+      else
+        a(href="/")= __('首页')	
+    li
+      if is_archive()
+        a.current(href="/archives")= __('归档')
+      else
+        a(href="/archives")= __('归档')
+    li
+      if is_category()
+        a.current(href="/categories")= __('分类')
+      else
+        a(href="/categories")= __('分类')
+    li
+      if is_tag()
+        a.current(href="/tags")= __('标签')
+      else
+        a(href="/tags")= __('标签')
+    li
+      if is_current('about')
+        a.current(href="/about")= __('关于')
+      else
+        a(href="/about")= __('关于')
+
